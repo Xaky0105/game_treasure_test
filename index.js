@@ -64,12 +64,17 @@ function game() {
     function showTreasure({x, y}) {
         const treasure = document.createElement('img');
         treasure.classList.add('treasure');
-        treasure.src = './img/treasure.png';
+        treasure.src = './img/treasure2.png';
+        treasure.style.opacity = 0;
         treasure.style.position = 'absolute';
+        treasure.style.transition = 'all .5s linear';
         treasure.style.top = `${y}px`;
         treasure.style.left = `${x}px`
         treasure.style.transform = 'translate(-50%, -50%)';
         treasure.style.width = '7rem';
+        setTimeout(() => {
+            treasure.style.opacity = 1;
+        })
         mapWrapper.append(treasure);
     }
     function hideTreasure() {
@@ -92,6 +97,9 @@ function game() {
             btn.textContent = 'Начать заново';
             mapWrapper.append(popup);
             popup.append(text, btn);
+            setTimeout(() => {
+                popup.style.opacity = 1;
+            })
 
             btn.addEventListener('click', () => {
                 popup.remove();

@@ -8,17 +8,20 @@
 }
 
 body {
-    background-color: rgb(229, 210, 210);
+    background-color: rgb(69 69 69);
 }
 
 #mapWrapper {
-    width: 60%;
+    width: 70%;
     margin: 5% auto 0%;
     position: relative;
+    border: 4px #000 solid;
 }
 
 #mapWrapper img {
+    display: block;
     width: 100%;
+    cursor: pointer;
 }
 
 #hint {
@@ -27,6 +30,7 @@ body {
     font-weight: 600;
     font-size: 3rem;
 }
+
 /* POPUP */
 
 .popup {
@@ -35,7 +39,7 @@ body {
     justify-content: space-between;
     align-items: center;
     position: absolute;
-    opacity: 1;
+    opacity: 0;
     top: 50%;
     left: 50%;
     width: 70%;
@@ -43,7 +47,7 @@ body {
     padding: 1rem;
     font-size: 1em;
     transform: translate(-50%, -50%);
-    background-color: rgb(104, 104, 104);
+    background-color: rgba(104, 104, 104, 0.665);
     z-index: 10;
     transition: all 1s linear;
 }
