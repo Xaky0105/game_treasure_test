@@ -1,16 +1,17 @@
 const map = document.getElementById('map');
 const mapWrapper = document.getElementById('mapWrapper');
 const hints = [
-    {text: 'FOUND', color: 'salmon'},
-    {text: "HOT", color: 'red'},
-    {text: 'WARM', color: 'orange'},
-    {text: 'COLD', color: 'skyblue'},
-    {text: 'WINTER', color: 'blue'},
+    {text: 'Найден!', color: 'salmon'},
+    {text: "Жарко", color: 'red'},
+    {text: 'Теплее', color: 'orange'},
+    {text: 'Холодно', color: 'skyblue'},
+    {text: 'Очень холодно', color: 'blue'},
 ];
 
 function game() {
     let count = 0;
     const hiddenTreasure = generateCoords(map);
+    console.log(hiddenTreasure);
     function mapClickHandler(e) {
         count++
         const clickCoord = {
@@ -36,9 +37,11 @@ function game() {
     map.addEventListener('click', mapClickHandler);
 
     function generateCoords({height, width}) {
+        const hGap = Math.floor(height / 100 * 10);
+        const vGap = Math.floor(width / 100 * 10);
         return {
-            x: Math.floor(Math.random() * width),
-            y: Math.floor(Math.random() * height)
+            x: Math.floor(Math.random() * (width)),
+            y: Math.floor(Math.random() * (height))
         }
     }
 
@@ -64,18 +67,19 @@ function game() {
         const hintContainer = document.getElementById('hint');
         hintContainer.textContent = hint.text;
         hintContainer.style.color = hint.color;
+        hintContainer.style.opacity = 1;
     }
     function showTreasure({x, y}) {
         const treasure = document.createElement('img');
         treasure.classList.add('treasure');
-        treasure.src = './img/treasure2.png';
+        treasure.src = './img/treasure.png';
         treasure.style.opacity = 0;
         treasure.style.position = 'absolute';
         treasure.style.transition = 'all .5s linear';
         treasure.style.top = `${y}px`;
         treasure.style.left = `${x}px`
         treasure.style.transform = 'translate(-50%, -50%)';
-        treasure.style.width = '7rem';
+        treasure.style.width = '5rem';
         setTimeout(() => {
             treasure.style.opacity = 1;
         })
