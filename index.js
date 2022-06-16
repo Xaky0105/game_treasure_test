@@ -37,11 +37,11 @@ function game() {
     map.addEventListener('click', mapClickHandler);
 
     function generateCoords({height, width}) {
-        const hGap = Math.floor(height / 100 * 10);
-        const vGap = Math.floor(width / 100 * 10);
+        const vGap = Math.floor(height / 100 * 10);
+        const hGap = Math.floor(width / 100 * 10);
         return {
-            x: Math.floor(Math.random() * (width)),
-            y: Math.floor(Math.random() * (height))
+            x: Math.floor(Math.random() * (width - hGap * 2) - hGap),
+            y: Math.floor(Math.random() * (height - vGap * 2) - vGap)
         }
     }
 
