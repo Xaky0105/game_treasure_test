@@ -21,11 +21,15 @@ function game() {
         const hintNumber = getHint(length);
         const hint = hints[hintNumber];
         showHint(hint);
+        showExcavation(clickCoord);
 
         if (hintNumber === 0) {
             e.target.removeEventListener('click', mapClickHandler);
+            playVictoryMusic()
             showTreasure(clickCoord);
             showPopup(count);
+        } else {
+            playExcavationMusic();
         }
     }
 
@@ -77,6 +81,19 @@ function game() {
         })
         mapWrapper.append(treasure);
     }
+    function showExcavation({x, y}) {
+        const excavation = document.createElement('img');
+        excavation.src = './img/excavation.png';
+        excavation.style.position = 'absolute';
+        excavation.style.top = `${y}px`;
+        excavation.style.left = `${x}px`;
+        excavation.style.width = '3rem';
+        excavation.style.transform = 'translate(-50%, -50%)';
+        mapWrapper.append(excavation);
+        setTimeout(() => {
+            excavation.remove();
+        },100)
+    }
     function hideTreasure() {
         const treasure = document.getElementsByClassName('treasure')[0];
         treasure.remove();
@@ -108,6 +125,16 @@ function game() {
                 return game();
             })
         }, 1500);
+    }
+    function playVictoryMusic() {
+        const audio = new Audio();
+        audio.src = './sound/win.mp3';
+        audio.autoplay = true;
+    }
+    function playExcavationMusic() {
+        const audio = new Audio();
+        audio.src = './sound/excavation.mp3';
+        audio.autoplay = true;
     }
 }
 
